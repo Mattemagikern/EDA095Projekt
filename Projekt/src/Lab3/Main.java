@@ -11,10 +11,11 @@ import java.net.Socket;
 
 public class Main {
 	public static void main(String args[]){
-		
-		try (ServerSocket server = new ServerSocket(3000)){
-			
-			while(true){
+		ServerSocket server;
+		try {
+			server = new ServerSocket(30000);
+			boolean loop = true;
+			while(loop){
 				try (Socket connection = server.accept()){
 					InputStream input = connection.getInputStream();
 					OutputStream output = connection.getOutputStream();
@@ -26,26 +27,33 @@ public class Main {
 					BufferedReader buffReader = new BufferedReader(reader);
 					String character;
 					while ((character = buffReader.readLine()) != null){ //reads next character and checks so we're not at the end
-						builder.append(character);
+						System.out.println(character);
+						String test = "fish";
+						output.write(test.getBytes());
+						output.flush();
 					}
 					System.out.println(builder.toString());
 					
 					String test = "fish";
 					output.write(test.getBytes());
 					output.flush();
-					
-					
+					connection.close();
+					loop = false;
 				} catch (IOException e){
 					
 				}
+			
 			}
+			server.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		
 	}
 		
+	
 		
 			
 	
