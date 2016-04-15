@@ -9,7 +9,7 @@ public class Postman extends Thread {
 	public void run(){
 		
 		while(true){
-			System.out.println(box.keeper.getTextAndRemove());
+			System.out.println(box.getTextAndRemove());
 			try {
 				long random = (long) (100*Math.random());
 				Thread.sleep(random);

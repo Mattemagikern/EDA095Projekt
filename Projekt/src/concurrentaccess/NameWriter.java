@@ -13,7 +13,10 @@ public class NameWriter extends Thread {
 	public void run(){
 		
 		for (int i = 0; i < 5; i++){
-			box.keeper.setText(name);
+			box.increaseNbr();
+			box.setText(name+i);
+			box.decreaseNbr();
+
 			
 			long random = (long) (1000*Math.random());
 			try {
@@ -21,12 +24,7 @@ public class NameWriter extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			try {
-				this.wait(15000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
+			
 		}
 			
 	}
