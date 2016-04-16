@@ -13,9 +13,9 @@ public class NameWriter extends Thread {
 	public void run(){
 		
 		for (int i = 0; i < 5; i++){
-			box.increaseNbr();
+
 			box.setText(name+i);
-			box.decreaseNbr();
+
 
 			
 			long random = (long) (1000*Math.random());
