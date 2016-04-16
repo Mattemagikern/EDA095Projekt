@@ -24,7 +24,7 @@ public class Mailbox {
 			
 			
 			fisk = text;
-			
+			//System.out.println("The mailbos text is" + text);
 		//keeper.setText(text);
 	}
 	

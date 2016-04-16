@@ -1,5 +1,6 @@
 package mainprogramserver;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -20,25 +21,26 @@ public class ServerWrite extends Thread{
 		
 		while (true){
 			String text = box.getTextAndRemove();
-				System.out.println("Im alive");
+			//System.out.println("the text collected from the mailbox to be sent out to client is: " + text);
+			//System.out.println("Im alive");
+			if (text != "") {
 				for (Participant p : participants) {
+					//System.out.println(p.getName() + "is connected");
 					try {
-						OutputStream output = p.getSocket().getOutputStream();
-						PrintWriter writer = new PrintWriter(output);
-						writer.println(text);
+						PrintWriter out = new PrintWriter(new BufferedOutputStream(p.getSocket().getOutputStream()),
+								true);
+
+						out.println(text);
 
 					} catch (IOException e) {
 
 						e.printStackTrace();
 					}
 				}
-			
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
 
-				e.printStackTrace();
+				
 			}
+			
 		}
 	}
 }

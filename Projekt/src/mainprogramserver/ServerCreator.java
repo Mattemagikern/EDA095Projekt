@@ -21,6 +21,7 @@ public class ServerCreator {
 			boolean loop = true;
 			while(loop){
 				Socket connection = server.accept();
+				System.out.println(connection.getInetAddress().toString() + " has connected");
 				Participant participant = new Participant(connection);
 				participants.add(participant);
 				ServerRead serverRead = new ServerRead(box, participant);
