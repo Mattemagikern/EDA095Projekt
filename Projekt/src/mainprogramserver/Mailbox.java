@@ -1,4 +1,4 @@
-package concurrentaccess;
+package mainprogramserver;
 
 public class Mailbox {
 	//StringKeeper keeper;

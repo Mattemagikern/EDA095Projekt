@@ -1,2 +1,3 @@
-/threadcoordination/
-/concurrentaccess/
+/client/
+/mainprogramserver/
+/mainprogramclient/
