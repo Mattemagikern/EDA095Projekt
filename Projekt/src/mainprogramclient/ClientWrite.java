@@ -43,6 +43,8 @@ public class ClientWrite extends Thread {
 				} else if (character.startsWith("E:")) {
 					System.out.println(parseString(character));
 				} else if (character.startsWith("Q:")) {
+					writer.println(character);
+					writer.flush();
 					break;
 				}
 	

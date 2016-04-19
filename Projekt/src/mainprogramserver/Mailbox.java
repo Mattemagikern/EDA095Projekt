@@ -1,40 +1,38 @@
 package mainprogramserver;
 
 public class Mailbox {
-	//StringKeeper keeper;
-	String fisk = "";
-	int nbrOfThreadsInQueue = 0;
-	
-	public Mailbox(){
-		//keeper = new StringKeeper();
-	}
-	
 
-	
-	public synchronized void setText(String text){
-		
-			if (text != "") {
+	String fisk = "";
+
+	public synchronized void setText(String text) {
+
+		if (text != "") {
+			while (fisk != null) {
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
-			
-			fisk = text;
-			//System.out.println("The mailbos text is" + text);
-		//keeper.setText(text);
+		}
+		fisk = text;
+		notifyAll();
+
 	}
-	
-	public  synchronized String getTextAndRemove(){
+
+	public synchronized String getTextAndRemove() {
+		while (fisk == null) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		String tmp = fisk;
-		fisk = "";
-		notify();
+		fisk = null;
+		notifyAll();
 		return tmp;
-		//return keeper.getTextAndRemove();
-		
+
 	}
-	
+
 }

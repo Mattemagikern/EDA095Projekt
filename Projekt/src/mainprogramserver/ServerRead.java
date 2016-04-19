@@ -27,8 +27,13 @@ public class ServerRead extends Thread{
 			String line;
 			while (!socket.isClosed()){
 				line = reader.readLine();
+				if (line.startsWith("Q:")){
+					socket.close();
+					ServerCreator.participants.remove(participant);
+				} else {
 				//System.out.println("the line read from the client: " + line);
 				box.setText(name+": "+line);
+				}
 				
 			}
 		} catch (IOException e) {

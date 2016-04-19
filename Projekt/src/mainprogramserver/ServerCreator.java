@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 
 public class ServerCreator {
-
+	static ArrayList<Participant> participants;
 	public void startServer(){
 		Mailbox box = new Mailbox();
 		//Postman man = new Postman(box);
-		ArrayList<Participant> participants = new ArrayList<Participant>();
+		participants = new ArrayList<Participant>();
 		ServerWrite serverWrite = new ServerWrite(box, participants);
 		serverWrite.start();
 		ServerSocket server;
